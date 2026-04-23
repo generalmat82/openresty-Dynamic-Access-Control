@@ -2,5 +2,5 @@
 > [!WARNING]
 > I am not a cybersecurity expert, I am not responsible for any leaks.
 
-> [!NOTICE]
+> [!NOTE]
 > This has only been tested using openresty
