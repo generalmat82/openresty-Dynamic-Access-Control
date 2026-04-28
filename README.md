@@ -21,3 +21,10 @@ Dependencies:
 - OPM PACKAGES:
   - knyar/nginx-lua-prometheus           0.20240525
   - anjia0532/lua-resty-maxminddb        1.3.7
+
+
+# TODO:
+- Add setup instructions in README.md or INSTALL.md
+- Make init
+- Make main
+- Make back files
