@@ -19,5 +19,5 @@ Dependencies:
 - Redis database setup
 - Openresty
 - OPM PACKAGES:
-- knyar/nginx-lua-prometheus           0.20240525
-- anjia0532/lua-resty-maxminddb        1.3.7
+  - knyar/nginx-lua-prometheus           0.20240525
+  - anjia0532/lua-resty-maxminddb        1.3.7
