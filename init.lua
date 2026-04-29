@@ -15,8 +15,8 @@ for i in secrets.subnets.blacklist do
 end
 
 -- Cache Initialization
-LOCAL_BL_CACHE = ngx.shared.ip_blacklist_cache
-LOCAL_WT_CACHE = ngx.shared.ip_whitelist_cache
+BL_CACHE = ngx.shared.ip_blacklist_cache
+WT_CACHE = ngx.shared.ip_whitelist_cache
 
 -- GEO
 GEO.init({

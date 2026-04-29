@@ -15,6 +15,7 @@ It's capacities are the following:
 - Subnet bassed whitelist
 - Metrics gathering
 - Centrally managed via 1 main setting file (secrets.lua)
+- apprise notifications
 
 # Dependencies:
 - Redis database setup
