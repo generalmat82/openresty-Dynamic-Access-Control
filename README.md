@@ -15,13 +15,17 @@ It's capacities are the following:
 - Subnet bassed whitelist
 - Metrics gathering
 
-Dependencies:
+# Dependencies:
 - Redis database setup
 - Openresty
 - OPM PACKAGES:
   - knyar/nginx-lua-prometheus           0.20240525
   - anjia0532/lua-resty-maxminddb        1.3.7
+- lua-bitop
+- lua-unit
 
+# Thanks to:
+[bnchdan](https://github.com/bnchdan) for their IpInSubnet project allowing subnet based control - [bnchdan/IpInSubnet](https://github.com/bnchdan/IpInSubnet)
 
 # TODO:
 - Add setup instructions in README.md or INSTALL.md
