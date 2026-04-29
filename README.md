@@ -14,6 +14,7 @@ It's capacities are the following:
 - Dynamic whitelist
 - Subnet bassed whitelist
 - Metrics gathering
+- Centrally managed via 1 main setting file (secrets.lua)
 
 # Dependencies:
 - Redis database setup
@@ -28,7 +29,8 @@ It's capacities are the following:
 [bnchdan](https://github.com/bnchdan) for their IpInSubnet project allowing subnet based control - [bnchdan/IpInSubnet](https://github.com/bnchdan/IpInSubnet)
 
 # TODO:
-- Add setup instructions in README.md or INSTALL.md
+- Add setup instructions in README.md or INSTALL.md or wiki
 - Make init
 - Make main
 - Make back files
+- Add a openresty config example file
