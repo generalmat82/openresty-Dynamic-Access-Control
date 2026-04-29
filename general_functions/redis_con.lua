@@ -16,8 +16,8 @@ end
 function REDIS_CON.get_redis_connection()
     -- connect
     local redisdb = redis:new()
-    redisdb:set_timeout(secrets.redis_connection_timeout)
-    local ok, err = redisdb:connect(secrets.redis_host, secrets.redis_port, secrets.redis_pool_config)
+    redisdb:set_timeout(secrets.redis.timeout)
+    local ok, err = redisdb:connect(secrets.redis.host, secrets.redis.port, secrets.redis.pool_config)
     if not ok then
         ngx.log(ngx.ERR, "Could not connect to redis: ", err)
         REDIS_CON.close_redis(redisdb)
