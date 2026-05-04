@@ -31,7 +31,5 @@ It's capacities are the following:
 
 # TODO:
 - Add setup instructions in README.md or INSTALL.md or wiki
-- Make init
-- Make main
-- Make back files
 - Add a openresty config example file
+- Make metrics gathering
