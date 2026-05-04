@@ -2,7 +2,7 @@ local secrets = require "secrets"
 GEO = require 'resty.maxminddb'
 
 -- Subnets
-IPInSubnet = require("IPInSubnet")
+local IPInSubnet = require("IPInSubnet")
 BLOCKED_IPS = IPInSubnet:new()
 ALLOWED_IPS = IPInSubnet:new()
 
