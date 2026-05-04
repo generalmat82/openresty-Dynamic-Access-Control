@@ -1,17 +1,18 @@
-local secrets = require "secrets"
+SECRETS = require "secrets"
 GEO = require 'resty.maxminddb'
+
 
 -- Subnets
 local IPInSubnet = require("IPInSubnet")
 BLOCKED_IPS = IPInSubnet:new()
 ALLOWED_IPS = IPInSubnet:new()
 
-for i in secrets.subnets.whitelist do
-    ALLOWED_IPS:addSubnet(secrets.subnets.whitelist[i])
+for i in SECRETS.subnets.whitelist do
+    ALLOWED_IPS:addSubnet(SECRETS.subnets.whitelist[i])
 end
 
-for i in secrets.subnets.blacklist do
-    BLOCKED_IPS:addSubnet(secrets.subnets.blacklist[i])
+for i in SECRETS.subnets.blacklist do
+    BLOCKED_IPS:addSubnet(SECRETS.subnets.blacklist[i])
 end
 
 -- Cache Initialization
@@ -20,9 +21,9 @@ WT_CACHE = ngx.shared.ip_whitelist_cache
 
 -- GEO
 GEO.init({
-    city = secrets.geoip.geoip_db_path.geoip_city,
-    asn = secrets.geoip.geoip_db_path.geoip_asn,
-    country = secrets.geoip.geoip_db_path.geoip_country
+    city = SECRETS.geoip.geoip_db_path.geoip_city,
+    asn = SECRETS.geoip.geoip_db_path.geoip_asn,
+    country = SECRETS.geoip.geoip_db_path.geoip_country
 })
 
 -- REDIS
