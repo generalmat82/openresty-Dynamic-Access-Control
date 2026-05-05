@@ -1,6 +1,6 @@
 local WHITELIST = {}
 
-function WHITELIST.whitelistCheck(whitelistKey,clientIP)
+function WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
     -- This function first verifies if the IP is in the local cache
     -- It then verifies if it is in the DB
     -- Finally it verifies if it is in an allowed subnet.

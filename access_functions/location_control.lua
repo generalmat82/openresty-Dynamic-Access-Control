@@ -1,12 +1,12 @@
 local LOCATION_CONTROL = {}
 
-function LOCATION_CONTROL.check(blockKey, whitelistKey)
+function LOCATION_CONTROL.check(blockKey, whitelistKey,SECRETS,DB)
     -- This Functions determines if the request
     -- is accessing the dynamic whitelist URI or something else
-    LOCATION_CONTROL.dynamic_whitelist(whitelistKey)
+    LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB)
 end
 
-function LOCATION_CONTROL.dynamic_whitelist(whitelistKey)
+function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB)
     -- Function for the dynamic Whitelist,
     -- First checks if domain matches then checks if the location matches
     if ngx.var.server_name == SECRETS.dyn_wt.location.domain then
@@ -18,7 +18,7 @@ function LOCATION_CONTROL.dynamic_whitelist(whitelistKey)
 end
 
 
-function LOCATION_CONTROL.detectSuspiciousPatterns(request_uri, user_agent)
+function LOCATION_CONTROL.detectSuspiciousPatterns(request_uri,SECRETS)
     for _, pattern in ipairs(SECRETS.path_blocks.locations) do
         if string.find(string.lower(request_uri), pattern) then
             return true
@@ -27,7 +27,7 @@ function LOCATION_CONTROL.detectSuspiciousPatterns(request_uri, user_agent)
     return false
 end
 
-function LOCATION_CONTROL.sus(requestUri, blockKey)
+function LOCATION_CONTROL.sus(requestUri, blockKey,DB,SECRETS)
     if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri) then
         DB:set(blockKey, 1)
         DB:expire(blockKey, SECRETS.block.block_time * 5)

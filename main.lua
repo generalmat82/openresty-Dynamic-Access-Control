@@ -10,16 +10,16 @@ local SECRETS = require "secrets"
 local clientIP = GENERAL.getClientIP()
 local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)
 
-local DB = REDIS_CON.get_redis_connection()
+local DB = REDIS_CON.get_redis_connection(SECRETS)
 
-WHITELIST.whitelistCheck(whitelistKey,clientIP)
+WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
 
-BLOCKING.blockCheck(blockKey)
+BLOCKING.blockCheck(blockKey,SECRETS,DB)
 
-BLOCKING.thresholdCheck(blockKey,countKey)
+BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
 
-BLOCKING.geo_check(clientIP,blockKey)
+BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL)
 
 LOCATION_CONTROL.check(blockKey,whitelistKey)
 
-REDIS_CON.close_redis(DB)
+REDIS_CON.close_redis(DB,SECRETS)
