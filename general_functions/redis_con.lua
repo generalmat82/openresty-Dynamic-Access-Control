@@ -1,5 +1,5 @@
 local redis = require "resty.redis"
-REDIS_CON = {}
+local REDIS_CON = {}
 
 function REDIS_CON.close_redis(red)
     if not red then
@@ -34,3 +34,5 @@ function REDIS_CON.get_redis_connection()
     end
     return redisdb
 end
+
+return REDIS_CON
