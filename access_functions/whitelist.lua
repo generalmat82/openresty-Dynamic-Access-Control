@@ -1,4 +1,4 @@
-WHITELIST = {}
+local WHITELIST = {}
 
 function WHITELIST.whitelistCheck(whitelistKey,clientIP)
     -- This function first verifies if the IP is in the local cache
@@ -13,3 +13,5 @@ function WHITELIST.whitelistCheck(whitelistKey,clientIP)
         WT_CACHE:set(whitelistKey,true,SECRETS.cache.wt_ttl)
         return true end
 end
+
+return WHITELIST

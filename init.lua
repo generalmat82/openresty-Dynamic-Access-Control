@@ -1,5 +1,4 @@
-require "secrets"
-require "general_functions.redis_con"
+SECRETS = require "secrets"
 GEO = require 'resty.maxminddb'
 
 

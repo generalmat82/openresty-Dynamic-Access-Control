@@ -1,9 +1,9 @@
 -- -File importation
-require "general_functions.general"
-require "general_functions.metrics"
-require "access_functions.blocking"
-require "access_functions.location_control"
-require "access_functions.whitelist"
+GENERAL = require "general_functions.general"
+METRICS = require "general_functions.metrics"
+BLOCKING = require "access_functions.blocking"
+LOCATION_CONTROL = require "access_functions.location_control"
+WHITELIST = require "access_functions.whitelist"
 -- -Obtain basic information
 local clientIP = GENERAL.getClientIP()
 local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)

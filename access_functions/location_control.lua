@@ -1,4 +1,4 @@
-LOCATION_CONTROL = {}
+local LOCATION_CONTROL = {}
 
 function LOCATION_CONTROL.check(blockKey, whitelistKey)
     -- This Functions determines if the request
@@ -34,3 +34,5 @@ function LOCATION_CONTROL.sus(requestUri, blockKey)
         ngx.exit(ngx.HTTP_FORBIDDEN)
     end
 end
+
+return LOCATION_CONTROL

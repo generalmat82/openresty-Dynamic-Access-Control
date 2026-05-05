@@ -1,4 +1,4 @@
-BLOCKING = {}
+local BLOCKING = {}
 
 function BLOCKING.blockCheck(blockKey)
     -- This function verifies if the IP is already blocked.
@@ -41,3 +41,5 @@ function BLOCKING.geo_check(clientIP,blockKey)
         ngx.exit(ngx.HTTP_FORBIDDEN)
     end
 end
+
+return BLOCKING
