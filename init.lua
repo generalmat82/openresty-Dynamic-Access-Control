@@ -10,8 +10,8 @@ ALLOWED_IPS = IPInSubnet:new()
 for key,subnet in ipairs(SECRETS.subnets.whitelist) do
     ALLOWED_IPS:addSubnet(subnet)
 end
-for i in SECRETS.subnets.blacklist do
-    BLOCKED_IPS:addSubnet(SECRETS.subnets.blacklist[i])
+for key,subnet in ipairs(SECRETS.subnets.blacklist) do
+    BLOCKED_IPS:addSubnet(subnet)
 end
 
 -- Cache Initialization
