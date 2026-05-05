@@ -1,4 +1,5 @@
 require "secrets"
+require "general_functions.redis_con"
 GEO = require 'resty.maxminddb'
 
 
@@ -26,5 +27,4 @@ GEO.init({
 })
 
 -- REDIS
-REDIS_CON = require "general_functions.redis_con"
 DB = REDIS_CON.get_redis_connection()
