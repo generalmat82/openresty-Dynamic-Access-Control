@@ -25,6 +25,3 @@ GEO.init({
     asn = SECRETS.geoip.geoip_db_path.geoip_asn,
     country = SECRETS.geoip.geoip_db_path.geoip_country
 })
-
--- REDIS
--- DB = REDIS_CON.get_redis_connection()
