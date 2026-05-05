@@ -20,6 +20,6 @@ BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
 
 BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL)
 
-LOCATION_CONTROL.check(blockKey,whitelistKey)
+LOCATION_CONTROL.check(blockKey,whitelistKey,SECRETS,DB)
 
 REDIS_CON.close_redis(DB,SECRETS)
