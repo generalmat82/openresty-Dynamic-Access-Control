@@ -25,6 +25,8 @@ It's capacities are the following:
   - anjia0532/lua-resty-maxminddb        1.3.7
 - lua-bitop
 - lua-unit
+- libmaxminddb0
+- libmaxminddb-dev
 
 # Thanks to:
 [bnchdan](https://github.com/bnchdan) for their IpInSubnet project allowing subnet based control - [bnchdan/IpInSubnet](https://github.com/bnchdan/IpInSubnet)
