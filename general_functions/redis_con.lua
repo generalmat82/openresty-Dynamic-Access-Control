@@ -25,7 +25,7 @@ function REDIS_CON.get_redis_connection()
     -- login
     local connCount = redisdb:get_reused_times()
     if 0 == connCount then
-        local ok, err = redisdb:auth(SECRETS.redis_auth)
+        local ok, err = redisdb:auth(SECRETS.redis.auth.user,SECRETS.redis.auth.password)
         if not ok then
             ngx.log(ngx.ERR, "Failed auth: ", err)
             REDIS_CON.close_redis(redisdb)
