@@ -1,4 +1,4 @@
-SECRETS = require "secrets"
+local SECRETS = require "secrets"
 GEO = require 'resty.maxminddb'
 
 
@@ -10,6 +10,7 @@ ALLOWED_IPS = IPInSubnet:new()
 for key,subnet in ipairs(SECRETS.subnets.whitelist) do
     ALLOWED_IPS:addSubnet(subnet)
 end
+
 for key,subnet in ipairs(SECRETS.subnets.blacklist) do
     BLOCKED_IPS:addSubnet(subnet)
 end
