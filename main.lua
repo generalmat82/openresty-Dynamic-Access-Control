@@ -8,6 +8,8 @@ WHITELIST = require "access_functions.whitelist"
 local clientIP = GENERAL.getClientIP()
 local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)
 
+DB = REDIS_CON.get_redis_connection()
+
 WHITELIST.whitelistCheck(whitelistKey,clientIP)
 
 BLOCKING.blockCheck(blockKey)

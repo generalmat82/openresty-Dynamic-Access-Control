@@ -27,4 +27,4 @@ GEO.init({
 })
 
 -- REDIS
-DB = REDIS_CON.get_redis_connection()
+-- DB = REDIS_CON.get_redis_connection()
