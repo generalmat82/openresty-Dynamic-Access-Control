@@ -14,7 +14,7 @@ local DB = REDIS_CON.get_redis_connection(SECRETS)
 
 WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
 
-BLOCKING.blockCheck(blockKey,SECRETS,DB)
+BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB)
 
 BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
 

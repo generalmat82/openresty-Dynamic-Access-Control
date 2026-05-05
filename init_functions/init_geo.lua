@@ -1,0 +1,11 @@
+local SECRETS = require("SECRETS")
+
+local geo = require("resty.maxminddb")
+
+geo.init({
+    city = SECRETS.geoip.geoip_db_path.geoip_city,
+    asn = SECRETS.geoip.geoip_db_path.geoip_asn,
+    country = SECRETS.geoip.geoip_db_path.geoip_country
+})
+
+return geo

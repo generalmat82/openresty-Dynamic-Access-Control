@@ -8,7 +8,8 @@ function WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
     if DB:get(whitelistKey) == "true" then
         WT_CACHE:set(whitelistKey,true,SECRETS.cache.wt_ttl)
         return true end
-    if ALLOWED_IPS:isInSubnets(clientIP) == true then
+    local SUBNETS = require("init_functions.init_subnet")
+    if SUBNETS.ALLOWED:isInSubnets(clientIP) == true then
         DB:set(whitelistKey,true)
         WT_CACHE:set(whitelistKey,true,SECRETS.cache.wt_ttl)
         return true end
