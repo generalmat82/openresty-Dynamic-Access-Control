@@ -4,6 +4,7 @@ METRICS = require "general_functions.metrics"
 BLOCKING = require "access_functions.blocking"
 LOCATION_CONTROL = require "access_functions.location_control"
 WHITELIST = require "access_functions.whitelist"
+REDIS_CON = require "general_functions.redis_con"
 -- -Obtain basic information
 local clientIP = GENERAL.getClientIP()
 local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)
