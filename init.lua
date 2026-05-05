@@ -1,4 +1,4 @@
-SECRETS = require "secrets"
+require "secrets"
 GEO = require 'resty.maxminddb'
 
 
