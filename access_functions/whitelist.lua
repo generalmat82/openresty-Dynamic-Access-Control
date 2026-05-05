@@ -1,6 +1,6 @@
-WHITELIST = {}
+local WHITELIST = {}
 
-function WHITELIST.whitelistCheck(whitelistKey,clientIP)
+function WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
     -- This function first verifies if the IP is in the local cache
     -- It then verifies if it is in the DB
     -- Finally it verifies if it is in an allowed subnet.
@@ -13,3 +13,5 @@ function WHITELIST.whitelistCheck(whitelistKey,clientIP)
         WT_CACHE:set(whitelistKey,true,SECRETS.cache.wt_ttl)
         return true end
 end
+
+return WHITELIST

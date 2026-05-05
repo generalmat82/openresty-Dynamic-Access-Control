@@ -1,6 +1,6 @@
-BLOCKING = {}
+local BLOCKING = {}
 
-function BLOCKING.blockCheck(blockKey)
+function BLOCKING.blockCheck(blockKey,SECRETS,DB)
     -- This function verifies if the IP is already blocked.
     if BL_CACHE:get(blockKey) == "true" then
         -- the IP is in the blacklist cache.
@@ -18,7 +18,7 @@ function BLOCKING.retryAttempt(blockKey)
     -- Actions to take if an IP retires once blocked
 end
 
-function BLOCKING.thresholdCheck(blockKey,countKey)
+function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
     -- increments the count and set the expiration.
     -- also verifies if the threshold has been passed.
     local count, err = tonumber(DB:incr(countKey))
@@ -31,7 +31,7 @@ function BLOCKING.thresholdCheck(blockKey,countKey)
     end
 end
 
-function BLOCKING.geo_check(clientIP,blockKey)
+function BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL)
     -- block based on IP geolocation.
     local country = GEO.lookup(clientIP, nil, 'country')
     if GENERAL.has_value(SECRETS.geoip.blocked_countries, country) then
@@ -41,3 +41,5 @@ function BLOCKING.geo_check(clientIP,blockKey)
         ngx.exit(ngx.HTTP_FORBIDDEN)
     end
 end
+
+return BLOCKING

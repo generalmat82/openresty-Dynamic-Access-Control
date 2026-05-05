@@ -1,7 +1,7 @@
 local redis = require "resty.redis"
-REDIS_CON = {}
+local REDIS_CON = {}
 
-function REDIS_CON.close_redis(red)
+function REDIS_CON.close_redis(red,SECRETS)
     if not red then
         return
     end
@@ -12,7 +12,7 @@ function REDIS_CON.close_redis(red)
     end
 end
 
-function REDIS_CON.get_redis_connection()
+function REDIS_CON.get_redis_connection(SECRETS)
     -- connect
     local redisdb = redis:new()
     redisdb:set_timeout(SECRETS.redis.timeout)
@@ -34,3 +34,5 @@ function REDIS_CON.get_redis_connection()
     end
     return redisdb
 end
+
+return REDIS_CON

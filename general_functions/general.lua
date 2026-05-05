@@ -1,5 +1,5 @@
 
-GENERAL = {}
+local GENERAL = {}
 
 
 function GENERAL.getClientIP()
@@ -36,3 +36,4 @@ function GENERAL.has_value (tab, val)
 
     return false
 end
+return GENERAL
