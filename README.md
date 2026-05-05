@@ -13,9 +13,9 @@ It's capacities are the following:
 - Static whitelist
 - Dynamic whitelist
 - Subnet bassed whitelist
-- Metrics gathering
+- Metrics gathering (WIP)
 - Centrally managed via 1 main setting file (secrets.lua)
-- apprise notifications
+- apprise notifications (WIP)
 
 # Dependencies:
 - Redis database setup
