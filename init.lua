@@ -7,10 +7,9 @@ local IPInSubnet = require("IPInSubnet")
 BLOCKED_IPS = IPInSubnet:new()
 ALLOWED_IPS = IPInSubnet:new()
 
-for i in SECRETS.subnets.whitelist do
-    ALLOWED_IPS:addSubnet(SECRETS.subnets.whitelist[i])
+for key,subnet in ipairs(SECRETS.subnets.whitelist) do
+    ALLOWED_IPS:addSubnet(subnet)
 end
-
 for i in SECRETS.subnets.blacklist do
     BLOCKED_IPS:addSubnet(SECRETS.subnets.blacklist[i])
 end
