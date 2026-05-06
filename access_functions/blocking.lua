@@ -13,7 +13,7 @@ function BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB)
         ngx.exit(ngx.HTTP_FORBIDDEN)
     end
     local SUBNETS = require("init_functions.init_subnet")
-    if SUBNETS.BLOCKED:isInSubnets(clientIP) == true then
+    if SUBNETS.BLOCKED:match(clientIP) == true then
         DB:set(blockKey,true)
         BL_CACHE:set(blockKey,true,SECRETS.cache.bl_ttl)
         return true end
