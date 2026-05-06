@@ -1,4 +1,4 @@
-local SECRETS = require("SECRETS")
+local SECRETS = require("secrets")
 
 local geo = require("resty.maxminddb")
 
