@@ -9,12 +9,12 @@ local SECRETS = require "secrets"
 -- -Obtain basic information
 local clientIP = GENERAL.getClientIP()
 local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)
-
+local CACHES = require("init_functions.init_caches")
 local DB = REDIS_CON.get_redis_connection(SECRETS)
 
-WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB)
+WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB,CACHES)
 
-BLOCKING.blockCheck(blockKey,SECRETS,DB)
+BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB,CACHES)
 
 BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
 
