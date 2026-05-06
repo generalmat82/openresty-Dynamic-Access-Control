@@ -23,13 +23,10 @@ It's capacities are the following:
 - OPM PACKAGES:
   - knyar/nginx-lua-prometheus           0.20240525
   - anjia0532/lua-resty-maxminddb        1.3.7
-- lua-bitop
-- lua-unit
+  - xiangnanscu/lua-resty-ipmatcher      0.31
 - libmaxminddb0
 - libmaxminddb-dev
 
-# Thanks to:
-[bnchdan](https://github.com/bnchdan) for their IpInSubnet project allowing subnet based control - [bnchdan/IpInSubnet](https://github.com/bnchdan/IpInSubnet)
 
 # TODO:
 - Add setup instructions in README.md or INSTALL.md or wiki

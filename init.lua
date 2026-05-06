@@ -3,17 +3,9 @@ GEO = require 'resty.maxminddb'
 
 
 -- Subnets
-local IPInSubnet = require("IPInSubnet")
-BLOCKED_IPS = IPInSubnet:new()
-ALLOWED_IPS = IPInSubnet:new()
-
-for key,subnet in ipairs(SECRETS.subnets.whitelist) do
-    ALLOWED_IPS:addSubnet(subnet)
-end
-
-for key,subnet in ipairs(SECRETS.subnets.blacklist) do
-    BLOCKED_IPS:addSubnet(subnet)
-end
+local ipmatcher = require("resty.ipmatcher")
+ALLOWED_IPS = ipmatcher.new(SECRETS.subnets.whitelist)
+BLOCKED_IPS = ipmatcher.new(SECRETS.subnets.blacklist)
 
 -- Cache Initialization
 BL_CACHE = ngx.shared.ip_blacklist_cache
