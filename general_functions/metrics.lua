@@ -1,3 +1,0 @@
-local METRICS = {}
-
-return METRICS
