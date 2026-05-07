@@ -11,7 +11,7 @@ local countKey, blockKey, whitelistKey = GENERAL.keyGenerator(clientIP)
 local CACHES = require("init_functions.init_caches")
 local DB = REDIS_CON.get_redis_connection(SECRETS)
 
-WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB,CACHES)
+if WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB,CACHES) then return end
 
 BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB,CACHES)
 

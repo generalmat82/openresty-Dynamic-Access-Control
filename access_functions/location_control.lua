@@ -4,6 +4,7 @@ function LOCATION_CONTROL.check(blockKey, whitelistKey,SECRETS,DB,clientIP)
     -- This Functions determines if the request
     -- is accessing the dynamic whitelist URI or something else
     LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
+    LOCATION_CONTROL.sus(ngx.var.request_uri,blockKey,DB,SECRETS,clientIP)
 end
 
 function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
@@ -32,8 +33,8 @@ function LOCATION_CONTROL.detectSuspiciousPatterns(request_uri,SECRETS)
 end
 
 function LOCATION_CONTROL.sus(requestUri, blockKey,DB,SECRETS,clientIP)
-    if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri) then
-        DB:set(blockKey, 1)
+    if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri,SECRETS) then
+        DB:set(blockKey, true)
         DB:expire(blockKey, SECRETS.block.block_time * 5)
         if SECRETS.notifications.enabled == true and SECRETS.notifications.block.enabled == true then
             local notify = require("general_functions.notif")
