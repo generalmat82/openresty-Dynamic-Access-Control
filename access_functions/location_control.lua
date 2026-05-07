@@ -34,7 +34,7 @@ end
 
 function LOCATION_CONTROL.sus(requestUri, blockKey,DB,SECRETS,clientIP)
     if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri,SECRETS) then
-        DB:set(blockKey, 1)
+        DB:set(blockKey, true)
         DB:expire(blockKey, SECRETS.block.block_time * 5)
         if SECRETS.notifications.enabled == true and SECRETS.notifications.block.enabled == true then
             local notify = require("general_functions.notif")
