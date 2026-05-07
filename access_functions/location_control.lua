@@ -4,6 +4,7 @@ function LOCATION_CONTROL.check(blockKey, whitelistKey,SECRETS,DB,clientIP)
     -- This Functions determines if the request
     -- is accessing the dynamic whitelist URI or something else
     LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
+    LOCATION_CONTROL.sus(ngx.var.request_uri,blockKey,DB,SECRETS,clientIP)
 end
 
 function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
