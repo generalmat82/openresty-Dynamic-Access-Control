@@ -1,17 +1,18 @@
-URL = "http://a.b.c.d"
-DB_USER = None
-DB_PASSWORD = None
+URL = "http://10.0.5.31"
+DB_INFO = {
+    "USER": "superadmin",
+    "PASSWORD": "P@ssword",
+    "PORT": 6379,
+    "HOST": "127.0.0.1",
+    "decode_responses": True
+}
 
-def clean_db(keys:list[str], host:str="127.0.0.1", port:int=6379, username:str|None=None, password:str|None=None):
+
+def clean_db(keys:list[str]) -> bool:
     """Remove specified keys from the DB.
 
     Args:
         keys (list[str]): List of keys to delete from DB
-        host (str, optional): Location of DB. Defaults to "127.0.0.1".
-        port (int, optional): Port of DB. Defaults to 6379.
-        username (str|None, optional): Username of DB. Defaults to None.
-        password (str|None, optional): Password of DB. Defaults to None.
-
     Returns:
         bool: True if DB cleaned, False if DB not cleaned
     """
@@ -19,13 +20,13 @@ def clean_db(keys:list[str], host:str="127.0.0.1", port:int=6379, username:str|N
     import requests
 
     client = redis.Redis(
-        host=host,
-        port=port,
-        username=username,
-        password=password,
-        decode_responses=True
+        host=DB_INFO["HOST"],
+        port=DB_INFO["PORT"],
+        username=DB_INFO["USER"],
+        password=DB_INFO["PASSWORD"],
+        decode_responses=DB_INFO["decode_responses"]
     )
-    requests.get(URL+":4956")
+    requests.get(URL+":4956/flush")
 
     try:
         deleted = client.delete(*keys)
@@ -39,15 +40,12 @@ def clean_db(keys:list[str], host:str="127.0.0.1", port:int=6379, username:str|N
 
 def main():
     test_keys = [
-        "limit:block:1.1.1.1",
         "limit:count:1.1.1.1",
-        "whitelist:ip:1.1.1.1",
-        "limit:block:2.2.2.2",
-        "limit:count:2.2.2.2",
-        "whitelist:ip:2.2.2.2",
+        "limit:block:2.2.3.3",
+        "limit:count:2.2.3.3",
     ]
 
-    if not clean_db(test_keys, username=DB_USER, password=DB_PASSWORD):
+    if not clean_db(test_keys):
         print("Unable to clean test Redis keys. Aborting tests.")
         exit(50)
 
@@ -59,12 +57,18 @@ def main():
 
     print("TEST 2: Block threshold test")
     from block_test import block_test
-    if not block_test(URL, "2.2.2.2", 5, 10):
+    if not block_test(URL, "2.2.3.3", 5, 2):
         print("Block test failed")
         exit(2)
 
+    print("TEST 3: Expiry check")
+    from expiry_test import expiry_test
+    if not expiry_test(URL, "2.2.3.3", DB_INFO):
+        print("expiry not working")
+        exit(3)
+
     print("All tests passed")
-    clean_db(test_keys,username=DB_USER, password=DB_PASSWORD)
+    clean_db(test_keys)
 
 
 if __name__ == "__main__":

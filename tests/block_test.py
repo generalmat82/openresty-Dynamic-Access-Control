@@ -14,7 +14,6 @@ def block_test(url:str, src_addr:str, n:int, time:int) -> bool:
     from time import sleep
 
     session = requests.Session()
-    headers = {"X-Real-IP": src_addr}
 
     # threshold_max is the number of allowed requests within the time window.
     # We send a few more requests to force the block condition.
@@ -24,7 +23,7 @@ def block_test(url:str, src_addr:str, n:int, time:int) -> bool:
 
     blocked_seen = False
     for request_index in range(1, total_requests + 1):
-        r = session.get(url, headers=headers)
+        r = session.get(url, headers={"X-Real-IP": src_addr})
         status = r.status_code
         if request_index <= allowed_requests:
             if status == 403:
