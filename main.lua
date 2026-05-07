@@ -1,6 +1,5 @@
 -- -File importation
 local GENERAL = require "general_functions.general"
-local METRICS = require "general_functions.metrics"
 local BLOCKING = require "access_functions.blocking"
 local LOCATION_CONTROL = require "access_functions.location_control"
 local WHITELIST = require "access_functions.whitelist"
