@@ -5,7 +5,7 @@ local function notify(title, notif_type, tag, body,SECRETS)
     local request = require "resty.http"
     local json = require("cjson")
     local httpc = request.new()
-    httpc:request_uri(SECRETS.notification.apprise_url, {
+    httpc:request_uri(SECRETS.notifications.apprise_url, {
         method = "POST",
         body = json.encode({
             title = title,

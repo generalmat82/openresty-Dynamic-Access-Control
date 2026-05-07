@@ -24,6 +24,7 @@ It's capacities are the following:
   - knyar/nginx-lua-prometheus           0.20240525
   - anjia0532/lua-resty-maxminddb        1.3.7
   - xiangnanscu/lua-resty-ipmatcher      0.31
+  - ledgetech/lua-resty-http             0.17.1
 - libmaxminddb0
 - libmaxminddb-dev
 
