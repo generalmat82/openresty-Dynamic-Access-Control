@@ -3,9 +3,21 @@ Using header "X-Real-IP" to fake IP addresses.
 
 Tests are created in a seperate file and is added to test_mngr.
 
-# Recomended secrets values:
-- bl_ttl = 5
-
+# secrets values expected for tests:
+```lua
+SECRETS.subnets.whitelist = {"7.7.7.0/24"}
+SECRETS.subnets.blacklist = {"8.8.8.0/24"}
+SECRETS.geoip.blocked_countries = {"RU"}
+SECRETS.cache.bl_ttl = 5
+SECRETS.cache.wt_ttl = 10
+SECRETS.block.threshold_window = 10
+SECRETS.block.threshold_max = 5
+SECRETS.block.block_time = 20
+SECRETS.dyn_wt.location.URI = "/whitelist"
+SECRETS.dyn_wt.duration = 20
+SECRETS.path_blocks.duration = 20
+SECRETS.path_blocks.locations = {"^/%.git.*"}
+```
 
 # Implemented tests:
 ## Test 1: Allow test
@@ -34,8 +46,8 @@ Params: url, src_addr, DB_INFO
 Using IP: 2.2.3.3
 
 # TODO:
-- test for dyn_wt
-- test for sus access
-- test for geo block
-- test for subnet whitelist
-- test for subnet blocklist
+- test for geo block - Test 4
+- test for sus access - Test 5
+- test for dyn_wt - Test 6
+- test for subnet whitelist - Test 7
+- test for subnet blocklist - Test 8
