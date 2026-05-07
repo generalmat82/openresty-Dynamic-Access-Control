@@ -66,6 +66,12 @@ def main():
     if not expiry_test(URL, "2.2.3.3", DB_INFO):
         print("expiry not working")
         exit(3)
+    
+    print("TEST 4: Geo block")
+    from geo_test import geo_test
+    if not geo_test(URL,"2.60.0.4"):
+        print("Geo IP not blocked")
+        exit(4)
 
     print("All tests passed")
     clean_db(test_keys)

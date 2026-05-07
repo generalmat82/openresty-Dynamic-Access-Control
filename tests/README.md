@@ -45,8 +45,17 @@ Expects Status code 200.
 Params: url, src_addr, DB_INFO
 Using IP: 2.2.3.3
 
+## Test 4: Geo block test
+This test will be using a russian IP to attempt a geoblock.
+The test is done in 1 queries. 
+Expects 304 else fails
+
+Params: url, src_addr
+Using IP: 2.60.0.4
+
+
+
 # TODO:
-- test for geo block - Test 4
 - test for sus access - Test 5
 - test for dyn_wt - Test 6
 - test for subnet whitelist - Test 7
