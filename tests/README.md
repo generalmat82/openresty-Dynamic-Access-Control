@@ -53,10 +53,14 @@ Expects 304 else fails
 Params: url, src_addr
 Using IP: 2.60.0.4
 
+## Test 5: Sus access test
+This Test tries to access /.git and should be blocked when doing so.
+Expects 304 else fails
 
+Params: url, src_addr
+Using IP: 5.5.5.5
 
 # TODO:
-- test for sus access - Test 5
 - test for dyn_wt - Test 6
 - test for subnet whitelist - Test 7
 - test for subnet blocklist - Test 8

@@ -73,6 +73,12 @@ def main():
         print("Geo IP not blocked")
         exit(4)
 
+    print("TEST 5: Location based block")
+    from sus_test import sus_test
+    if not sus_test(URL+"/.git","5.5.5.5"):
+        print("Access to /.git was not blocked")
+        exit(5)
+
     print("All tests passed")
     clean_db(test_keys)
 
