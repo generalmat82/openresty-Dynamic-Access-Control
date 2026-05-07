@@ -23,7 +23,7 @@ function BLOCKING.retryAttempt(blockKey)
     -- Actions to take if an IP retires once blocked
 end
 
-function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
+function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB,clientIP)
     -- increments the count and set the expiration.
     -- also verifies if the threshold has been passed.
     local count, err = tonumber(DB:incr(countKey))
@@ -33,6 +33,13 @@ function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
     if count > SECRETS.block.threshold_max then
         DB:set(blockKey, true)
         DB:expire(blockKey, SECRETS.block.block_time)
+        if SECRETS.notifications.enabled == true and SECRETS.notifications.block.enabled == true then
+            local notify = require("general_functions.notif")
+            local title = "Address blocked"
+            local body = "Address has been blocked for extensive access: "..clientIP
+            notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.notif_tag,body,SECRETS)
+        end
+
     end
 end
 

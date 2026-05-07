@@ -15,10 +15,10 @@ WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB,CACHES)
 
 BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB,CACHES)
 
-BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB)
+BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB,clientIP)
 
 BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL)
 
-LOCATION_CONTROL.check(blockKey,whitelistKey,SECRETS,DB)
+LOCATION_CONTROL.check(blockKey,whitelistKey,SECRETS,DB,clientIP)
 
 REDIS_CON.close_redis(DB,SECRETS)
