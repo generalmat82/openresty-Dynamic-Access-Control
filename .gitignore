@@ -1,2 +1,8 @@
 secrets.lua
-oldVersion/*
+
+#venv folders
+__pycache__
+tests/lib*
+tests/bin
+tests/include
+pyvenv.cfg
