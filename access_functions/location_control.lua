@@ -33,7 +33,7 @@ function LOCATION_CONTROL.detectSuspiciousPatterns(request_uri,SECRETS)
 end
 
 function LOCATION_CONTROL.sus(requestUri, blockKey,DB,SECRETS,clientIP)
-    if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri) then
+    if LOCATION_CONTROL.detectSuspiciousPatterns(requestUri,SECRETS) then
         DB:set(blockKey, 1)
         DB:expire(blockKey, SECRETS.block.block_time * 5)
         if SECRETS.notifications.enabled == true and SECRETS.notifications.block.enabled == true then
