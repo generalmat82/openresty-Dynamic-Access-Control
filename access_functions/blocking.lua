@@ -37,7 +37,7 @@ function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB,clientIP)
             local notify = require("general_functions.notif")
             local title = "Address blocked"
             local body = "Address has been blocked for extensive access: "..clientIP
-            notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.notif_tag,body,SECRETS)
+            notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.tag,body,SECRETS)
         end
 
     end

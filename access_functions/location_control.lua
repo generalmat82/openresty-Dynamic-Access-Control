@@ -16,7 +16,7 @@ function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
             local notify = require("general_functions.notif")
             local title = "Dynamic IP addition"
             local body = "IP has attempted to be added to whitelist: "..clientIP
-            notify(title,SECRETS.notifications.dyn_wt.notif_type,SECRETS.notifications.dyn_wt.notif_tag,body,SECRETS)
+            notify(title,SECRETS.notifications.dyn_wt.notif_type,SECRETS.notifications.dyn_wt.tag,body,SECRETS)
         end
     end
 end
@@ -39,7 +39,7 @@ function LOCATION_CONTROL.sus(requestUri, blockKey,DB,SECRETS,clientIP)
             local notify = require("general_functions.notif")
             local title = "Address blocked"
             local body = "Address has been blocked for accessing blocked locations: "..clientIP
-            notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.notif_tag,body,SECRETS)
+            notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.tag,body,SECRETS)
         end
         ngx.exit(ngx.HTTP_FORBIDDEN)
     end
