@@ -1,3 +1,4 @@
+-- ran when a worker starts
 PROMETHEUS = require("prometheus").init("prometheus_metrics")
 
 METRICS = {
