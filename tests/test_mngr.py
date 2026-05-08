@@ -91,6 +91,12 @@ def main():
         print("Test failed, subnet whitelist not working.")
         exit(7)
 
+    print("TEST 8: subnet blacklist")
+    from sub_bl_test import sub_bl_test
+    if not sub_bl_test(URL, "8.8.8.8"):
+        print("Test failed, subnet blacklist not working.")
+        exit(8)
+
     print("All tests passed")
     clean_db(test_keys)
 

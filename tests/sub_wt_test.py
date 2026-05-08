@@ -1,4 +1,14 @@
 def sub_wt_test(url:str,src_addr:str,DB_INFO:dict) -> bool:
+    """Verifies the subnet whitelist
+
+    Args:
+        url (str): url to query
+        src_addr (str): source address for the "X-Real-IP" header
+        DB_INFO (dict): dict with DB connect info
+
+    Returns:
+        bool: true if passed False if failed
+    """
     import redis
     import requests
     r1 = requests.get(url,headers={"X-Real-IP": src_addr})

@@ -92,7 +92,9 @@ It will then connect to the DB to verify it is whitelisted.
 Params: url, src_addr, DB_INFO
 Using IP: 7.7.7.7
 
+## Test 8: Subnet blacklist test
+This test will send a query in the blacklisted subnet.
+Expects 403, else fails
 
-# TODO:
-- test for subnet whitelist - Test 7
-- test for subnet blocklist - Test 8
+Params: url, src_addr
+Using IP: 8.8.8.8
