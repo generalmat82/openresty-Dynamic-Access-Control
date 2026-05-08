@@ -85,6 +85,12 @@ def main():
         print("Test failed, dynamic whitelist does not work.")
         exit(6)
 
+    print("TEST 7: subnet whitelist")
+    from sub_wt_test import sub_wt_test
+    if not sub_wt_test(URL,"7.7.7.7",DB_INFO):
+        print("Test failed, subnet whitelist not working.")
+        exit(7)
+
     print("All tests passed")
     clean_db(test_keys)
 

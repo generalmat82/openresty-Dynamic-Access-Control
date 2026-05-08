@@ -80,8 +80,17 @@ Instead we will do the following:
 | src_addr | source address |
 | loc_url | url for the sus access |
 | blo_url | url for brute force |
-| DB_INFO | dict with DB connect info|
+| n | max ammount of querries |
+| time | time window to reach n+1 in seconds |
+| DB_INFO | dict with DB connect info |
 Using IP: 6.6.6.6
+
+## Test 7: subnet whitelist test
+This test will send a query in the whitelisted subnet.
+It will then connect to the DB to verify it is whitelisted.
+
+Params: url, src_addr, DB_INFO
+Using IP: 7.7.7.7
 
 
 # TODO:

@@ -1,4 +1,18 @@
 def dyn_wt_test(wt_url:str,src_addr:str,loc_url:str,blo_url:str, n:int, time:int,DB_INFO:dict) -> bool:
+    """Tests the dynamic whitelist
+
+    Args:
+        wt_url (str): dyn_wt url
+        src_addr (str): source address
+        loc_url (str): url for the sus access
+        blo_url (str): url for brute force
+        n (int): max ammount of querries
+        time (int): time window to reach n+1 in seconds
+        DB_INFO (dict): dict with DB connect info
+
+    Returns:
+        bool: true if passed False if failed
+    """
     import requests
     import redis
     from time import sleep
