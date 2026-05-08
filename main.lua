@@ -17,7 +17,7 @@ BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB,CACHES)
 
 BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB,clientIP)
 
-BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL)
+BLOCKING.geo_check(clientIP,blockKey,SECRETS,DB,GENERAL,CACHES)
 
 LOCATION_CONTROL.check(blockKey,whitelistKey,SECRETS,DB,clientIP)
 
