@@ -79,6 +79,12 @@ def main():
         print("Access to /.git was not blocked")
         exit(5)
 
+    print("TEST 6: dynamic whitelist test")
+    from dyn_wt_test import dyn_wt_test
+    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL,5,2,DB_INFO):
+        print("Test failed, dynamic whitelist does not work.")
+        exit(6)
+
     print("All tests passed")
     clean_db(test_keys)
 
