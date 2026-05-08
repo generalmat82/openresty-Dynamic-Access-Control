@@ -31,3 +31,11 @@ def sub_wt_test(url:str,src_addr:str,DB_INFO:dict) -> bool:
         return False
     print("\tTest passed: Subnet whitelist fonctional")
     return True
+
+if __name__ == "__main__":
+    print("Subnet whitelist test:")
+    from test_mngr import URL, DB_INFO, clean_db
+    clean_db(["whitelist:ip:7.7.7.7"])
+    if not sub_wt_test(URL+"/whitelist","7.7.7.7",DB_INFO):
+        print("Test failed: subnet whitelist not working")
+# end main

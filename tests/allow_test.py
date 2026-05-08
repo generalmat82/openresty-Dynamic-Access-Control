@@ -17,3 +17,10 @@ def allow_test(url:str,src_addr:str) -> bool:
         print(f"\tTest failed, expected: 200, received: {r.status_code}")
         return False
 
+
+if __name__ == "__main__":
+    print("Allowed access test:")
+    from test_mngr import URL, DB_INFO, clean_db
+    if not allow_test(URL,"1.1.1.1"):
+        print("Test failed: could not access URL")
+# end main

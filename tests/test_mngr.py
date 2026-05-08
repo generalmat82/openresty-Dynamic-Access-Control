@@ -57,7 +57,7 @@ def main():
 
     print("TEST 2: Block threshold test")
     from block_test import block_test
-    if not block_test(URL, "2.2.3.3", 5, 2):
+    if not block_test(URL, "2.2.3.3", 5, 10):
         print("Block test failed")
         exit(2)
 
@@ -81,7 +81,7 @@ def main():
 
     print("TEST 6: dynamic whitelist test")
     from dyn_wt_test import dyn_wt_test
-    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL,5,2,DB_INFO):
+    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL,5,10,DB_INFO):
         print("Test failed, dynamic whitelist does not work.")
         exit(6)
 
