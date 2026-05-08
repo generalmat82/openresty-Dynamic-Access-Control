@@ -13,9 +13,9 @@ It's capacities are the following:
 - Static whitelist
 - Dynamic whitelist
 - Subnet bassed whitelist
-- Metrics gathering (WIP)
+- Metrics gathering
 - Centrally managed via 1 main setting file (secrets.lua)
-- apprise notifications (WIP)
+- apprise notifications
 
 # Dependencies:
 - Redis database
@@ -30,6 +30,7 @@ It's capacities are the following:
 
 
 # TODO:
-- Add setup instructions in README.md or INSTALL.md or wiki
-- Add a openresty config example file
-- Make metrics gathering
+- Improve documentation for install
+- add metrics
+- final tests
+- bug fixes
