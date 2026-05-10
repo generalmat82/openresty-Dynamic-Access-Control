@@ -43,6 +43,9 @@ def main():
         "limit:count:1.1.1.1",
         "limit:block:2.2.3.3",
         "limit:count:2.2.3.3",
+        "limit:block:8.8.8.8",
+        "whitelist:ip:7.7.7.7",
+        "limit:block:5.5.5.5"
     ]
 
     if not clean_db(test_keys):
@@ -51,25 +54,25 @@ def main():
 
     print("TEST 1: Allow test")
     from allow_test import allow_test
-    if not allow_test(URL, "1.1.1.1"):
+    if not allow_test(URL+"/index.html", "1.1.1.1"):
         print("Necessary Pass required")
         exit(1)
 
     print("TEST 2: Block threshold test")
     from block_test import block_test
-    if not block_test(URL, "2.2.3.3", 5, 2):
+    if not block_test(URL+"/index.html", "2.2.3.3", 5, 10):
         print("Block test failed")
         exit(2)
 
     print("TEST 3: Expiry check")
     from expiry_test import expiry_test
-    if not expiry_test(URL, "2.2.3.3", DB_INFO):
+    if not expiry_test(URL+"/index.html", "2.2.3.3", DB_INFO):
         print("expiry not working")
         exit(3)
     
     print("TEST 4: Geo block")
     from geo_test import geo_test
-    if not geo_test(URL,"2.60.0.4"):
+    if not geo_test(URL+"/index.html","2.60.0.4"):
         print("Geo IP not blocked")
         exit(4)
 
@@ -81,19 +84,19 @@ def main():
 
     print("TEST 6: dynamic whitelist test")
     from dyn_wt_test import dyn_wt_test
-    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL,5,2,DB_INFO):
+    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL+"/index.html",5,10,DB_INFO):
         print("Test failed, dynamic whitelist does not work.")
         exit(6)
 
     print("TEST 7: subnet whitelist")
     from sub_wt_test import sub_wt_test
-    if not sub_wt_test(URL,"7.7.7.7",DB_INFO):
+    if not sub_wt_test(URL+"/index.html","7.7.7.7",DB_INFO):
         print("Test failed, subnet whitelist not working.")
         exit(7)
 
     print("TEST 8: subnet blacklist")
     from sub_bl_test import sub_bl_test
-    if not sub_bl_test(URL, "8.8.8.8"):
+    if not sub_bl_test(URL+"/index.html", "8.8.8.8"):
         print("Test failed, subnet blacklist not working.")
         exit(8)
 

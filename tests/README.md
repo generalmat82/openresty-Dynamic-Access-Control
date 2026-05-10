@@ -48,14 +48,14 @@ Using IP: 2.2.3.3
 ## Test 4: Geo block test
 This test will be using a russian IP to attempt a geoblock.
 The test is done in 1 queries. 
-Expects 304 else fails
+Expects 403 else fails
 
 Params: url, src_addr
 Using IP: 2.60.0.4
 
 ## Test 5: Sus access test
 This Test tries to access /.git and should be blocked when doing so.
-Expects 304 else fails
+Expects 403 else fails
 
 Params: url, src_addr
 Using IP: 5.5.5.5

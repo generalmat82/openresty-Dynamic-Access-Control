@@ -87,3 +87,11 @@ def dyn_wt_test(wt_url:str,src_addr:str,loc_url:str,blo_url:str, n:int, time:int
         print("Test passed: Whitelist was successful")
         return True
     return False
+
+
+if __name__ == "__main__":
+    print("dynamic whitelist test:")
+    from test_mngr import URL, DB_INFO, clean_db
+    if not dyn_wt_test(URL+"/whitelist","6.6.6.6",URL+"/.git",URL,5,10,DB_INFO):
+        print("Test failed: dynamic whitelist does not work.")
+# end main

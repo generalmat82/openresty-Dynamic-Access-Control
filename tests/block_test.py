@@ -41,3 +41,10 @@ def block_test(url:str, src_addr:str, n:int, time:int) -> bool:
 
     print(f"\tTest failed: block was not triggered after {allowed_requests} allowed requests")
     return False
+
+if __name__ == "__main__":
+    print("Block threshold test:")
+    from test_mngr import URL, DB_INFO, clean_db
+    if not block_test(URL, "2.2.3.3",5,10):
+        print("Test failed: Block test failed")
+# end main

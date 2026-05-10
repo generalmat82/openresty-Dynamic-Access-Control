@@ -35,3 +35,11 @@ def expiry_test(url:str,src_addr:str,DB_INFO:dict) -> bool:
     else:
         print("\tTest failed: block expired but query was blocked")
         return False
+
+
+if __name__ == "__main__":
+    print("Expiry check test:")
+    from test_mngr import URL, DB_INFO, clean_db
+    if not expiry_test(URL,"2.2.3.3",DB_INFO):
+        print("Test failed: access to /.git was not blocked")
+# end main
