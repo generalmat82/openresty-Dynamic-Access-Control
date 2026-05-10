@@ -16,7 +16,8 @@ function BLOCKING.blockCheck(blockKey,clientIP,SECRETS,DB,CACHES)
     if SUBNETS.BLOCKED:match(clientIP) == true then
         DB:set(blockKey,true)
         CACHES.BL:set(blockKey,true,SECRETS.cache.bl_ttl)
-        return true end
+        ngx.exit(ngx.HTTP_FORBIDDEN)
+    end
 end
 
 function BLOCKING.retryAttempt(blockKey)
