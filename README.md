@@ -32,5 +32,3 @@ It's capacities are the following:
 # TODO:
 - Improve documentation for install
 - add metrics
-- final tests
-- bug fixes
