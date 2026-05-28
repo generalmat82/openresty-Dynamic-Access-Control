@@ -5,7 +5,7 @@ function WHITELIST.whitelistCheck(whitelistKey,clientIP,SECRETS,DB,CACHES)
     -- It then verifies if it is in the DB
     -- Finally it verifies if it is in an allowed subnet.
     if CACHES.WT:get(whitelistKey) == "true" then return true end
-    if DB:get(whitelistKey) == "true" then
+    if string.find(string.lower(DB:get(whitelistKey)), "^true.*") then
         CACHES.WT:set(whitelistKey,true,SECRETS.cache.wt_ttl)
         return true end
     local SUBNETS = require("init_functions.init_subnet")
