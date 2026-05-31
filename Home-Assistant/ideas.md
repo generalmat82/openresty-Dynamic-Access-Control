@@ -15,33 +15,50 @@ Get the pool in var
 ```
 {% set ip_pool = state_attr('sensor.variables', 'variables')['ip_pool'] %}
 ```
-creatr 2 vars
+create 2 vars
 	old_ip - the from ip
 	new_ip - the now ip
 
 ```
-  old_ip: "{{ trigger.from_state.state | default('') }}"
-  new_ip: "{{ trigger.to_state.state | default('') }}"
+old_ip: "{{ trigger.from_state.state | default('') }}"
+new_ip: "{{ trigger.to_state.state | default('') }}"
 ```
 
 ## Ip removal logic (Old IP)
 remove first occurance of old_ip in pool
-
+  using the macro
+```
+{%  from 'remove_first_occurrence.jinja' import remove_first_occurrence %}
+{% set new_ip_pool = remove_first(ip_pool, old_ip) %}
+```
 
 Verif if the IP still appears in the pool
+```
+{% if old_ip in new_ip_pool %}
+```
 if it dosent: send script call for removal
 if it does: continue
+```
+{% endif %}
+```
 
 ## IP adding logic (New IP)
 Verif if the IP still apears in the pool
+```
+{% if new_ip in new_ip_pool %}
+```
 if it isin't: send script call for adding
 if it is: continue
+```
+{% endif %}
+```
 Add IP to pool
+```
+{% do new_ip_pool.append(new_ip) %}
+- event: set_variable
+    event_data: 
+      key: ip_pool
+      value: {{ new_ip_pool }}
+```
 
-255.255.255.255
 End
-
-
-# Template posibilities:
-{% set x = "x, y, z" %}
-{{ x.split(", ")[1] | string }}

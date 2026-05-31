@@ -1,0 +1,70 @@
+# How to configure the Home Assistant link.
+
+1. Add the following YAML to the configuration.yaml:
+```yaml
+template: 
+# this configuration can be placed in configuration.yaml
+- triggers:
+    - trigger: event
+      event_type: set_variable
+    - trigger: event
+      event_type: remove_variable
+    - trigger: event
+      event_type: clear_variables
+  conditions:
+    - condition: template
+      value_template: >
+        {{
+            (
+              trigger.event.event_type == 'set_variable'
+              and trigger.event.data is defined
+              and trigger.event.data.key is defined
+              and trigger.event.data.value is defined
+            )
+            or
+            (
+              trigger.event.event_type == 'remove_variable'
+              and trigger.event.data is defined
+              and trigger.event.data.key is defined
+            )
+            or 
+            trigger.event.event_type == 'clear_variables'
+        }}
+  actions:
+    - if: "{{ trigger.event.data.get('log', state_attr('sensor.variables', 'log_events')) }}"
+      then:
+        - action: logbook.log
+          data:
+            name: "{{ trigger.event.event_type }}:"
+            message: >
+              {{ trigger.event.data.key | default('All variables removed') }}
+              {%- if trigger.event.event_type == 'set_variable' -%}
+                : {{ trigger.event.data.value }}.
+              {%- endif -%}
+  sensor:
+    - unique_id: 4a4c8e53-9e68-4198-9cc5-b336e228ea4d
+      name: Variables
+      state: Variables
+      attributes:
+        default_timestamp: false
+        log_events: false
+        variables: >
+          {% set others = dict(this.attributes.get('variables', {}).items() | rejectattr('0', 'eq', trigger.event.data.key)) %}
+          {% if trigger.event.event_type == 'set_variable'
+              and trigger.event.data.get('set_timestamp', this.attributes.get('default_timestamp', false))
+          %}
+            {% set value  = trigger.event.data.value %}
+            {% set value = value.isoformat() if value is datetime else value %}
+            {% set new = {trigger.event.data.key: {'value': value, 'timestamp': now().isoformat()}} %}
+            {{ dict(others, **new) }}
+          {% elif trigger.event.event_type == 'set_variable' %}
+            {% set new = {trigger.event.data.key: trigger.event.data.value} %}
+            {{ dict(others, **new) }}
+          {% elif trigger.event.event_type == 'remove_variable' %}
+            {{ others }}
+          {% elif trigger.event.event_type == 'clear_variables' %}
+            {}
+          {% endif %}
+```
+
+2. Add the contents of remove_first_occurence.jinja into custom_templates/remove_first_occurrence.jinja

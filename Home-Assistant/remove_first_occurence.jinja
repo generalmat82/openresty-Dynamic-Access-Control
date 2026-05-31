@@ -1,0 +1,22 @@
+{% macro remove_first_occurrence(data_list, ip_to_remove, returns) %}
+    {# Check if the list and item are provided #}
+    {% if data_list is none or ip_to_remove is none %}
+        {% set new_list = data_list | default([]) %}
+        {% do returns(new_list) %}
+    {% else %}
+        {# Check if the item exists in the list #}
+        {% if ip_to_remove in data_list %}
+            {# Find the index of the first occurrence #}
+            {% set first_index = data_list.index(ip_to_remove) %}
+            {# Create the new list by combining the safe slices #}
+            {% set part_before = data_list[:first_index] %}
+            {% set part_after = data_list[first_index + 1:] %}
+            {# Concatenate the parts #}
+            {% set new_list = part_before + part_after %}
+            {% do returns(new_list) %}
+        {% else %}
+            {# If the item is not found, return the original list #}
+            {% do returns(data_list) %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
