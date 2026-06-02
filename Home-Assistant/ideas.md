@@ -1,3 +1,8 @@
+# Change of plan:
+HA will send the old and new IP to proxy and proxy will do the processing.
+This is because the processing in HA automation is too complicated to change.
+
+
 # Ideas for the automation
 # Inputs
 the blueprint could have 2 inputs:
