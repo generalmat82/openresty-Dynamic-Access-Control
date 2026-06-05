@@ -4,9 +4,15 @@ local REDIS_CON = require "general_functions.redis_con"
 local DB = REDIS_CON.get_redis_connection(SECRETS)
 local cjson = require "cjson"
 
--- -Obtaining body
+
+local params = {old_ip = "", new_ip = ""}
+
+-- -Obtaining parameters
 ngx.req.read_body()
 local params = cjson.decode(ngx.req.get_body_data())
+
+-- -
+
 local whitelistKey = "whitelist:ip:"..params["ip"]
 
 -- -Verif of HA entries
