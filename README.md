@@ -18,7 +18,7 @@ It's capacities are the following:
 - apprise notifications
 
 # Dependencies:
-- Redis database
+- Redis database 8.8.0 or above
 - Openresty
 - OPM PACKAGES:
   - knyar/nginx-lua-prometheus           0.20240525
