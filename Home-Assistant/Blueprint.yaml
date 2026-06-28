@@ -1,0 +1,27 @@
+blueprint:
+  name: IP Proxy Sync Automation
+  description: Used to sync public_ip_address entities to reverse proxy.
+  domain: automation
+  input:
+    ip_sensors:
+      name: IP Sensor Entities
+      description: A list of sensors that report public IP addresses (e.g., sensor.phone_1_public_ip_address).
+      default: []
+      selector:
+        entity:
+          multiple: true
+          filter:
+            - integration: "mobile_app"
+            - domain: "sensor"          
+mode: parallel
+max: 50
+
+trigger:
+  - platform: state
+    entity_id: !input ip_sensors
+
+action:
+  - service: rest_command.proxy
+    data:
+      old_ip: "{{ trigger.from_state.state }}"
+      new_ip: "{{ trigger.to_state.state }}"
