@@ -1,18 +1,18 @@
 local LOCATION_CONTROL = {}
 
-function LOCATION_CONTROL.check(blockKey, whitelistKey,SECRETS,DB,clientIP)
+function LOCATION_CONTROL.check(blockKey, whitelistKey,SECRETS,DB,clientIP,GENERAL)
     -- This Functions determines if the request
     -- is accessing the dynamic whitelist URI or something else
-    LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
+    LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP,GENERAL)
     LOCATION_CONTROL.sus(ngx.var.request_uri,blockKey,DB,SECRETS,clientIP)
 end
 
-function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP)
+function LOCATION_CONTROL.dynamic_whitelist(whitelistKey,SECRETS,DB,clientIP,GENERAL)
     -- Function for the dynamic Whitelist,
     -- First checks if domain matches then checks if the location matches
-    if ngx.var.server_name == SECRETS.dyn_wt.location.domain and ngx.var.request_uri == SECRETS.dyn_wt.location.URI then
-            DB:set(whitelistKey,true)
-            DB:expire(whitelistKey,SECRETS.dyn_wt.duration)
+    if GENERAL.has_value(SECRETS.dyn_wt.location.domain,ngx.var.server_name) and GENERAL.has_value(SECRETS.dyn_wt.location.URI,ngx.var.request_uri) then
+        DB:set(whitelistKey,true)
+        DB:expire(whitelistKey,SECRETS.dyn_wt.duration)
         if SECRETS.notifications.enabled == true and SECRETS.notifications.dyn_wt.enabled == true then
             local notify = require("general_functions.notif")
             local title = "Dynamic IP addition"
