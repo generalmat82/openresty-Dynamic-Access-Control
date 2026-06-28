@@ -37,7 +37,7 @@ function BLOCKING.thresholdCheck(blockKey,countKey,SECRETS,DB,clientIP)
         if SECRETS.notifications.enabled == true and SECRETS.notifications.block.enabled == true then
             local notify = require("general_functions.notif")
             local title = "Address blocked"
-            local body = "Address has been blocked for extensive access: "..clientIP
+            local body = "Address has been blocked for extensive access: "..clientIP.."\nVia:"..ngx.var.server_name
             notify(title,SECRETS.notifications.block.notif_type,SECRETS.notifications.block.tag,body,SECRETS)
         end
 
