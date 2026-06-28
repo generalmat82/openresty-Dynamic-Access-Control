@@ -1,0 +1,16 @@
+alias: Proxy whitelist sync
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - sensor.<phone_1>_public_ip_address
+      - sensor.<phone_2>_public_ip_address
+conditions: []
+actions:
+  - action: rest_command.proxy
+    metadata: {}
+    data:
+      old_ip: "{{trigger.from_state.state}}"
+      new_ip: "{{trigger.to_state.state}}"
+mode: single
+
